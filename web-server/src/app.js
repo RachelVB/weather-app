@@ -2,6 +2,9 @@
 const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
+const geocode = require('./utils/geocode');
+const forecast = require('./utils/forcast');
+
 
 const app = express();
 
@@ -53,11 +56,41 @@ app.get('/help', (req, res) => {
 
 
 app.get('/weather', (req, res) => {
-  res.send({
-    location: 'Victoria',
-    forcast: 'sunny with a chance of rain'
+  if (!req.query.address) {
+    return res.send({
+      error: 'You must provide an address!'
+    })
+  }
+  geocode(req.query.address, (error, { latitude, longitude, location }) => {
+    if (error) {
+      return res.send({error});
+    } 
+    forecast(latitude, longitude, (error, forcastData) => {
+      if (error) {
+        return res.send({error});
+      }
+      res.send({
+        forecast: forcastData,
+        location: location,
+        address: req.query.address
+      })
+    })
   })
 });
+
+
+app.get('/products', (req, res) => {
+  if (!req.query.search) {
+    return res.send({
+      error: 'You must provide a search term!'
+    })
+  } else {
+    res.send({
+      products: [],
+    })
+  }
+});
+
 
 // This allows us to match a request related to a certain page. 
 app.get('/help/*', (req, res) => {

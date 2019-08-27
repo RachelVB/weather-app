@@ -30,3 +30,9 @@ app.set('views', viewsPath);
 To prevent any errors when testing your handlbars code, make sure (if you have nodemon running) to start nodemon using the following syntax:
 nodemon src/app.js -e js,hbs
 This way, it will restart your server when you have any of your extended files. 
+
+
+If you ever get this error:
+Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+
+This is an error stating that you are sending 2 res (responses) to the server and this is not allowed in express. 
