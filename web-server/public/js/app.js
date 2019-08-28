@@ -12,11 +12,12 @@ weatherForm.addEventListener('submit', (e) => {
   const location = searchTerm.value;
 
   messageOne.textContent = 'Loading...';
+  messageTwo.textContent = ' '
 
-    fetch('http://localhost:3000/weather?address=' + encodeURIComponent(location)).then((response) => {
+    fetch('/weather?address=' + encodeURIComponent(location)).then((response) => {
       response.json().then((data) => {
         if (data.error) {
-          messageOne.textContent = 'Unable to connect to weather service!';
+          messageOne.textContent = 'Error: ' + data.error;
           messageTwo.textContent = ' ';
           //console.log('Unable to connect to weather service!');
         } else {
