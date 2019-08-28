@@ -94,4 +94,12 @@ https://vanbus-weather-app.herokuapp.com/ | https://git.heroku.com/vanbus-weathe
 AndrewRcheliMac:web-server arvanbuskirk$ 
 ```
 
+How to gain access to heroku remotely:
+```
+AndrewRcheliMac:web-server arvanbuskirk$ heroku git:remote -a vanbus-weather-app
+set git remote heroku to https://git.heroku.com/vanbus-weather-app.git
+AndrewRcheliMac:web-server arvanbuskirk$ 
+```
+
+
 
