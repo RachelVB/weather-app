@@ -101,5 +101,11 @@ set git remote heroku to https://git.heroku.com/vanbus-weather-app.git
 AndrewRcheliMac:web-server arvanbuskirk$ 
 ```
 
+Utilize 
+```
+git push heroku master
+```
+to update your heroku app.
+
 
 
